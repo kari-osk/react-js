@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script
+			crossorigin
+			src="https://unpkg.com/react@16/umd/react.development.js"
+		></script>
+		<script
+			crossorigin
+			src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+		></script>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<script type="text/babel">
+			//mini exercicio para alterar o title da pagina atraves do input
+
+			const setDocumentTitle = newTitle => {
+				document.title = newTitle;
+			};
+
+			const App = () => {
+				const [title, setTitle] = React.useState('');
+
+				React.useEffect(() => {
+					if (title) {
+						setDocumentTitle(title);
+					} else {
+						setDocumentTitle('React');
+					}
+				}, [title]);
+
+				return (
+					<div>
+						<input
+							type="text"
+							value={title}
+							onChange={event => setTitle(event.target.value)}
+						/>
+						<button onClick={() => setTitle('')}>clear</button>
+					</div>
+				);
+			};
+
+			ReactDOM.render(<App />, document.getElementById('root'));
+		</script>
+	</body>
+</html>
